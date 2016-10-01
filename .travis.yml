@@ -1,0 +1,25 @@
+language: csharp
+solution: WebApplication1.sln
+script:    # the following commands are just examples, use whatever your build process requires
+  - ./build.sh
+  - ./test.sh
+  - grep "Test Results" build.log
+ install:
+  - sudo apt-get install -y gtk-sharp2
+  - nuget restore WebApplication1.sln
+mono:
+  - latest
+  - 3.12.0
+  - 3.10.0
+ matrix:
+  include:
+    - dotnet: 1.0.0-preview2-003121
+      mono: none
+      env: DOTNETCORE=1
+    - mono: latest
+install:
+  - nuget restore WebApplication1.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release solution-name.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./WebApplication1.Tests/bin/Release/MyProject.Tests.dll
