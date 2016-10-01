@@ -25,8 +25,8 @@ namespace WebApplication1.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count());
-            Assert.AreEqual("value1", result.ElementAt(0));
-            Assert.AreEqual("value2", result.ElementAt(1));
+            Assert.AreEqual("Shailendra", result.ElementAt(0));
+            Assert.AreEqual("Tiwari", result.ElementAt(1));
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace WebApplication1.Tests.Controllers
             string result = controller.Get(5);
 
             // Assert
-            Assert.AreEqual("value", result);
+            Assert.AreEqual("Shailendra", result);
         }
 
         [TestMethod]
